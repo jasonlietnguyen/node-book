@@ -1,11 +1,13 @@
 var express = require('express')
 var bodyParser = require('body-parser')
-
+var cors = require('cors')
 var server = express()
 var port = 8000
 // var books = []
 
 server.use(bodyParser.json())
+server.use(cors())
+server.use('/', express.static(`${__dirname}/app/`))
 
 
 var mongoose = require('mongoose')
@@ -80,3 +82,4 @@ var BookSchema = new Schema({
   aurthor: { type: String, required: true }
 })
 var Book = mongoose.model('Book', BookSchema)
+
